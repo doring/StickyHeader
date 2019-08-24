@@ -34,7 +34,7 @@ bintray {
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
     user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apiKey")
+    key = properties.getProperty("bintray.apikey")
     publications = ['Production']
     configurations = ['archives']
 
@@ -43,9 +43,8 @@ bintray {
         name = 'sticky-header'
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/doring/StickyHeader.git'
-        labels = ['sticky', 'header']
+        labels = ['android', 'sticky', 'header']
         description = "A simple recycle view decoration that provide sticky header"
-        dryRun = true
         publish = true
         publicDownloadNumbers = true
         override = true
