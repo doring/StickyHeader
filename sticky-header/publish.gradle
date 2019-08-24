@@ -1,0 +1,58 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+version '1.0'
+group 'com.doring'
+
+publishing {
+    publications {
+        Production(MavenPublication) {
+            groupId 'com.doring'
+            artifactId 'sticky-header'
+            version this.version
+
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+
+                // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.implementation.allDependencies.each {
+                    // Ensure dependencies such as fileTree are not included in the pom.
+                    if (it.name != 'unspecified') {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apiKey")
+    publications = ['Production']
+    configurations = ['archives']
+
+    pkg {
+        repo = 'maven'
+        name = 'sticky-header'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/doring/StickyHeader.git'
+        labels = ['sticky', 'header']
+        description = "A simple recycle view decoration that provide sticky header"
+        dryRun = true
+        publish = true
+        publicDownloadNumbers = true
+        override = true
+        version {
+            name = this.version
+            released = new Date()
+            vcsTag = this.version
+        }
+    }
+}
