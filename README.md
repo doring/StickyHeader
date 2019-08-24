@@ -10,18 +10,22 @@ A simple recycle view decoration that provide sticky header
 Download
 --------
 
+I'm working on applying it in jcenter as well.
+
 Download [the latest JAR][1] or grab via Gradle:
 ```groovy
 repositories {
-    jcenter()
+    maven {
+        url "https://dl.bintray.com/doring/maven"
+    }
 }
-implementation 'com.doring.stickyheader:stickyheader:1.0'
+implementation 'com.doring:sticky-header:1.0'
 ```
 or Maven:
 ```xml
 <dependency>
-  <groupId>com.doring.stickyheader</groupId>
-  <artifactId>stickyheader</artifactId>
+  <groupId>com.doring</groupId>
+  <artifactId>sticky-header</artifactId>
   <version>1.0</version>
 </dependency>
 ```
