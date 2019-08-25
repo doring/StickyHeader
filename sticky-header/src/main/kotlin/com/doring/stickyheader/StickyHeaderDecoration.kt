@@ -122,7 +122,7 @@ class StickyHeaderDecoration constructor(
         }
 
         if (stickyView.parent == null) {
-            // sticky header 가 추가될 view group 을 찾아놓음
+            // find and save a parent viewGroup that stickyHeader view will be added.
             if (stickyHeaderParent == null) {
                 var parentView = parent.parent as View
                 while (!(parentView is RelativeLayout || parentView is FrameLayout) || parentView is NestedScrollingParent) {
