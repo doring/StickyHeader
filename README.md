@@ -10,14 +10,10 @@ A simple recycle view decoration that provide sticky header
 Download
 --------
 
-I'm working on applying it in jcenter as well.
-
 Download [the latest JAR][1] or grab via Gradle:
 ```groovy
 repositories {
-    maven {
-        url "https://dl.bintray.com/doring/maven"
-    }
+    jcenter()
 }
 implementation 'com.doring:sticky-header:1.0'
 ```
@@ -49,4 +45,4 @@ License
     limitations under the License.
 
 
- [1]: http://jcenter.bintray.com/com/doring/stickyheader/stickyheader/1.0
+ [1]: https://dl.bintray.com/doring/maven/com/doring/sticky-header/1.0
